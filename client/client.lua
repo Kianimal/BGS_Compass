@@ -51,13 +51,11 @@ end)
 
 -- Add character selected event handler to check for inventory
 RegisterNetEvent("vorp:SelectedCharacter", function()
-    local player = PlayerId()
     local playerPed = PlayerPedId()
-    local serverId = GetPlayerServerId(player)
     -- Create thread loop for checking inventory on player spawn
     CreateThread(function()
         while Config.useCompass or Config.useMap do
-            TriggerServerEvent("BGS_Compass:checkPlayerInventory", serverId)
+            TriggerServerEvent("BGS_Compass:checkPlayerInventory")
             Citizen.Wait(Config.TimeToCheck) -- Check inventory every 5 seconds
         end
     end)

@@ -1,6 +1,7 @@
 -- Register server event to check player inventory
 RegisterServerEvent("BGS_Compass:checkPlayerInventory") 
-AddEventHandler("BGS_Compass:checkPlayerInventory", function(_source)
+AddEventHandler("BGS_Compass:checkPlayerInventory", function()
+    local _source = source
     -- Get inventory and auto-set has item to false
     local hasItem = false
     -- Error check for player inventory
