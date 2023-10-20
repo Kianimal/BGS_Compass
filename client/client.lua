@@ -7,11 +7,6 @@ local mapTypeOnFoot = Config.MapTypeOnFoot
 local mapTypeOnMount = Config.MapTypeOnMount
 local mapTypeNoCompass = Config.MapTypeNoCompass
 
--- Define the player variables
-local player = PlayerId()
-local playerPed = PlayerPedId()
-local serverId = GetPlayerServerId(player)
-
 local hasMapItem = false
 
 -- Register show minimap event
@@ -60,6 +55,9 @@ end)
 
 -- Add spawn player event handler to check for inventory
 AddEventHandler("playerSpawned", function()
+    local player = PlayerId()
+    local playerPed = PlayerPedId()
+    local serverId = GetPlayerServerId(player)
     -- Create thread loop for checking inventory on player spawn
     CreateThread(function()
         while Config.useCompass or Config.useMap do
