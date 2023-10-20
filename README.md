@@ -1,6 +1,6 @@
 # BGS_Compass
 ## Usage
-A simple compass/map item mod to use in your RedM server.
+A simple compass/map item mod to use in your RedM VORP server.
 
 Associates the usage of the compass/map (configurable on and off for each) with an item.
 
