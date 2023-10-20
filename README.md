@@ -11,4 +11,6 @@ If the player has the map item, they can use the map.
 
 Item names are configurable, as well as the time to check for map/compass inventory updates.
 
+Big thanks to Outsider for his help on optimizing this!
+
 ### REQUIRES VORP
