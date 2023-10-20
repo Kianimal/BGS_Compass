@@ -1,7 +1,3 @@
--- Define the item names you want to check for
-local compassItemToCheck = Config.compassItemToCheck
-local mapItemToCheck = Config.mapItemToCheck
-
 -- Define the map types
 local mapTypeOnFoot = Config.MapTypeOnFoot
 local mapTypeOnMount = Config.MapTypeOnMount
@@ -53,8 +49,8 @@ AddEventHandler('BGS_Compass:disableMap', function(_source)
     end)
 end)
 
--- Add spawn player event handler to check for inventory
-AddEventHandler("playerSpawned", function()
+-- Add character selected event handler to check for inventory
+RegisterNetEvent("vorp:SelectedCharacter", function()
     local player = PlayerId()
     local playerPed = PlayerPedId()
     local serverId = GetPlayerServerId(player)
