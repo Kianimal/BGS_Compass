@@ -5,6 +5,7 @@ A simple compass/map item mod to use in your RedM server.
 Associates the usage of the compass/map (configurable on and off for each) with an item.
 
 If the player has the compass item, they can see their compass (compass visibility and type is configurable).
+The player can also select their own compass type in the game menu but this will still require the compass item (configurable on/off).
 
 If the player has the map item, they can use the map.
 
