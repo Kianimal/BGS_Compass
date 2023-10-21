@@ -56,11 +56,12 @@ end)
 
 CreateThread(function()
     while Config.UseMap do
+        Wait(1)
+        print("test")
         if hasMapItem then
-            return
+            EnableControlAction(0, 0xE31C6A41, true)
         else
             DisableControlAction(0, 0xE31C6A41, true)
-            Citizen.Wait(0)
         end
     end
 end)

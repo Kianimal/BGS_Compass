@@ -2,7 +2,7 @@ Config = {}
 
 -- Flags for which systems to use
 Config.UseCompass = true
-Config.UseMap = false
+Config.UseMap = true
 
 -- Compass/map items
 Config.CompassItemToCheck = "compass"
