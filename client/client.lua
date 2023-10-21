@@ -10,7 +10,7 @@ RegisterNetEvent('BGS_Compass:showMiniMap')
 AddEventHandler('BGS_Compass:showMiniMap', function()
     local player = PlayerPedId()
     local playerOnMout = IsPedOnMount(player)
-    local playerOnVeh = IsPedInAnyVehicle(player)
+    local playerOnVeh = IsPedInAnyVehicle(player, false)
     -- Check if player is on foot or vehicle
     if not playerOnMout and not playerOnVeh and not Config.UseUserCompass then
         SetMinimapType(mapTypeOnFoot)
@@ -57,10 +57,7 @@ end)
 CreateThread(function()
     while Config.UseMap do
         Wait(1)
-        print("test")
-        if hasMapItem then
-            EnableControlAction(0, 0xE31C6A41, true)
-        else
+        if not hasMapItem then
             DisableControlAction(0, 0xE31C6A41, true)
         end
     end
