@@ -3,17 +3,19 @@ RegisterServerEvent("BGS_Compass:checkPlayerInventory")
 AddEventHandler("BGS_Compass:checkPlayerInventory", function()
     local _source = source
     -- Error check for player inventory
-    local compassCount = exports.vorp_inventory:getItemCount(_source, nil, Config.CompassItemToCheck)
-    if compassCount > 0 and Config.UseCompass then
-        TriggerClientEvent("BGS_Compass:showMiniMap", _source)
-    elseif compassCount == 0 and Config.UseCompass then
-        TriggerClientEvent("BGS_Compass:hideMiniMap", _source)
-    end
+    if source then
+        local compassCount = exports.vorp_inventory:getItemCount(_source, nil, Config.CompassItemToCheck)
+        if compassCount > 0 and Config.UseCompass then
+            TriggerClientEvent("BGS_Compass:showMiniMap", _source)
+        elseif compassCount == 0 and Config.UseCompass then
+            TriggerClientEvent("BGS_Compass:hideMiniMap", _source)
+        end
 
-    local mapCount = exports.vorp_inventory:getItemCount(_source, nil, Config.MapItemToCheck)
-    if mapCount > 0 and Config.UseMap then
-        TriggerClientEvent("BGS_Compass:enableMap", _source)
-    elseif mapCount == 0 and Config.UseMap then
-        TriggerClientEvent("BGS_Compass:disableMap", _source)
+        local mapCount = exports.vorp_inventory:getItemCount(_source, nil, Config.MapItemToCheck)
+        if mapCount > 0 and Config.UseMap then
+            TriggerClientEvent("BGS_Compass:enableMap", _source)
+        elseif mapCount == 0 and Config.UseMap then
+            TriggerClientEvent("BGS_Compass:disableMap", _source)
+        end
     end
 end)
