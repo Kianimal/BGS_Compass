@@ -17,6 +17,7 @@ AddEventHandler('BGS_Compass:showMiniMap', function()
     elseif playerOnMout or playerOnVeh and not Config.UseUserCompass then
         SetMinimapType(mapTypeOnMount)
     else
+        DisplayRadar(true)
         return
     end
 end)
@@ -24,7 +25,11 @@ end)
 --Register hide minimap event
 RegisterNetEvent('BGS_Compass:hideMiniMap')
 AddEventHandler('BGS_Compass:hideMiniMap', function()
-    SetMinimapType(mapTypeNoCompass)
+    if not Config.UseUserCompass then
+        SetMinimapType(mapTypeNoCompass)
+    else
+        DisplayRadar(false)
+    end
 end)
 
 -- Register show map event
