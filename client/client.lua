@@ -63,7 +63,11 @@ CreateThread(function()
     while Config.UseMap do
         Wait(1)
         if not hasMapItem then
+            SetMinimapHideFow(false)
+            Citizen.InvokeNative(0x632AA10BF7EA53D3, false)
             DisableControlAction(0, 0xE31C6A41, true)
+        else
+            SetMinimapHideFow(true)
         end
     end
 end)
