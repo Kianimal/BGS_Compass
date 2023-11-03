@@ -67,6 +67,7 @@ CreateThread(function()
             Citizen.InvokeNative(0x632AA10BF7EA53D3, false)
             DisableControlAction(0, 0xE31C6A41, true)
             ClearGpsPlayerWaypoint()
+            ClearGpsMultiRoute()
         else
             SetMinimapHideFow(true)
         end
