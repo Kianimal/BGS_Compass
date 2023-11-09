@@ -51,7 +51,7 @@ RegisterNetEvent("vorp:SelectedCharacter", function()
     CreateThread(function()
         while Config.UseCompass or Config.UseMap do
             TriggerServerEvent("BGS_Compass:checkPlayerInventory")
-            Citizen.Wait(Config.TimeToCheck) -- Check inventory every 5 seconds
+            Citizen.Wait(Config.TimeToCheck) -- Check inventory every X seconds
         end
     end)
     if Config.UseMap then
