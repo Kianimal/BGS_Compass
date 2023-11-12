@@ -77,7 +77,6 @@ CreateThread(function()
         end
         if Config.DisableTabWheelCompass then
             if IsControlPressed(0, 0xAC4BD4F1) then
-                print("menu active")
                 DisplayRadar(false)
             end
         end
