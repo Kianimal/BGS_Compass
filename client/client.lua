@@ -14,8 +14,10 @@ AddEventHandler('BGS_Compass:showMiniMap', function()
     -- Check if player is on foot or vehicle
     if not playerOnMout and not playerOnVeh and not Config.UseUserCompass then
         SetMinimapType(mapTypeOnFoot)
+        DisplayRadar(true)
     elseif playerOnMout or playerOnVeh and not Config.UseUserCompass then
         SetMinimapType(mapTypeOnMount)
+        DisplayRadar(true)
     else
         DisplayRadar(true)
         return
@@ -60,16 +62,24 @@ RegisterNetEvent("vorp:SelectedCharacter", function()
 end)
 
 CreateThread(function()
-    while Config.UseMap do
+    while true do
         Wait(1)
-        if not hasMapItem then
-            SetMinimapHideFow(false)
-            Citizen.InvokeNative(0x632AA10BF7EA53D3, false)
-            DisableControlAction(0, 0xE31C6A41, true)
-            ClearGpsPlayerWaypoint()
-            ClearGpsMultiRoute()
-        else
-            SetMinimapHideFow(true)
+        if Config.UseMap then
+            if not hasMapItem then
+                SetMinimapHideFow(false)
+                Citizen.InvokeNative(0x632AA10BF7EA53D3, false)
+                DisableControlAction(0, 0xE31C6A41, true)
+                ClearGpsPlayerWaypoint()
+                ClearGpsMultiRoute()
+            else
+                SetMinimapHideFow(true)
+            end
+        end
+        if Config.DisableTabWheelCompass then
+            if IsControlPressed(0, 0xAC4BD4F1) then
+                print("menu active")
+                DisplayRadar(false)
+            end
         end
     end
 end)

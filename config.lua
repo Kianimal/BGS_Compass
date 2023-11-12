@@ -2,6 +2,7 @@ Config = {}
 
 -- Flags for which systems to use
 Config.UseCompass = true                -- Default use compass item
+Config.DisableTabWheelCompass = true    -- Disable tab wheel comapss
 Config.UseMap = true                    -- Default use map item
 
 -- Compass/map items
