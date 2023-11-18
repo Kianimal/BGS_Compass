@@ -4,6 +4,7 @@ local mapTypeOnMount = Config.MapTypeOnMount
 local mapTypeNoCompass = Config.MapTypeNoCompass
 
 local hasMapItem = false
+local scrolling = false
 
 -- Register show minimap event
 RegisterNetEvent('BGS_Compass:showMiniMap')
@@ -52,8 +53,16 @@ RegisterNetEvent("vorp:SelectedCharacter", function()
     -- Create thread loop for checking inventory on player spawn
     CreateThread(function()
         while Config.UseCompass or Config.UseMap do
-            TriggerServerEvent("BGS_Compass:checkPlayerInventory")
-            Citizen.Wait(Config.TimeToCheck) -- Check inventory every X seconds
+            Wait(0)
+            if scrolling then
+                DisplayRadar(false)
+                Citizen.Wait(Config.TimeToCheck)
+                scrolling = false
+            end
+            if not scrolling then
+                TriggerServerEvent("BGS_Compass:checkPlayerInventory")
+                Citizen.Wait(Config.TimeToCheck) -- Check inventory every X seconds
+            end
         end
     end)
     if Config.UseMap then
@@ -78,6 +87,10 @@ CreateThread(function()
         if Config.DisableTabWheelCompass then
             if IsControlPressed(0, 0xAC4BD4F1) then
                 DisplayRadar(false)
+            end
+            if IsControlJustPressed(0, 0xFD0F0C2C) or IsControlJustPressed(0, 0xCC1075A7) then
+                DisplayRadar(false)
+                scrolling = true
             end
         end
     end
