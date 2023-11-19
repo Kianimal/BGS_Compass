@@ -4,7 +4,6 @@ local mapTypeOnMount = Config.MapTypeOnMount
 local mapTypeNoCompass = Config.MapTypeNoCompass
 
 local hasMapItem = false
-local scrolling = false
 
 -- Register show minimap event
 RegisterNetEvent('BGS_Compass:showMiniMap')
@@ -54,15 +53,8 @@ RegisterNetEvent("vorp:SelectedCharacter", function()
     CreateThread(function()
         while Config.UseCompass or Config.UseMap do
             Wait(0)
-            if scrolling then
-                DisplayRadar(false)
-                Citizen.Wait(Config.TimeToCheck)
-                scrolling = false
-            end
-            if not scrolling then
-                TriggerServerEvent("BGS_Compass:checkPlayerInventory")
-                Citizen.Wait(Config.TimeToCheck) -- Check inventory every X seconds
-            end
+            TriggerServerEvent("BGS_Compass:checkPlayerInventory")
+            Citizen.Wait(Config.TimeToCheck) -- Check inventory every X seconds
         end
     end)
     if Config.UseMap then
@@ -75,22 +67,16 @@ CreateThread(function()
         Wait(1)
         if Config.UseMap then
             if not hasMapItem then
-                SetMinimapHideFow(false)
-                Citizen.InvokeNative(0x632AA10BF7EA53D3, false)
-                DisableControlAction(0, 0xE31C6A41, true)
                 ClearGpsPlayerWaypoint()
                 ClearGpsMultiRoute()
-            else
-                SetMinimapHideFow(true)
+                if Citizen.InvokeNative(0x4E511D093A86AD49, joaat("map")) then
+                    Citizen.InvokeNative(0x04428420A248A354, joaat("map"))
+                end
             end
         end
         if Config.DisableTabWheelCompass then
-            if IsControlPressed(0, 0xAC4BD4F1) then
+            if Citizen.InvokeNative(0x96FD694FE5BE55DC, joaat("hud_quick_select")) == 1322164459 then
                 DisplayRadar(false)
-            end
-            if IsControlJustPressed(0, 0xFD0F0C2C) or IsControlJustPressed(0, 0xCC1075A7) then
-                DisplayRadar(false)
-                scrolling = true
             end
         end
     end
