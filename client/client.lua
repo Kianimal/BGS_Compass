@@ -75,7 +75,8 @@ CreateThread(function()
             end
         end
         if Config.DisableTabWheelCompass then
-            if Citizen.InvokeNative(0x96FD694FE5BE55DC, joaat("hud_quick_select")) == 1322164459 then
+            print(Citizen.InvokeNative(0x96FD694FE5BE55DC, joaat("hud_quick_select")))
+            if Citizen.InvokeNative(0x96FD694FE5BE55DC, joaat("hud_quick_select")) == 1322164459 or Citizen.InvokeNative(0x96FD694FE5BE55DC, joaat("hud_quick_select")) == 400623090 then
                 DisplayRadar(false)
             end
         end
