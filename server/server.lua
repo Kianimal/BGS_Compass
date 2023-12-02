@@ -26,3 +26,8 @@ AddEventHandler("BGS_Compass:checkPlayerInventory", function()
         TriggerClientEvent("BGS_Compass:disableMap", _source)
     end
 end)
+
+RegisterServerEvent("BGS_Compass:getUserGroup", function()
+    local _source = source
+    TriggerClientEvent("BGS_Compass:storeUserGroup", _source, VORPcore.getUser(_source).getGroup)
+end)

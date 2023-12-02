@@ -19,3 +19,8 @@ Config.UseUserCompass = false           -- Default to not use user compass
 
 -- Time interval to check for inventory updates and horse/foot status (in ms)
 Config.TimeToCheck = 1000               -- Default 1 seconds
+
+-- List of all user groups that are exempted from the item check (can use map and compass no matter what)
+Config.Exempted = {
+    -- "admin"
+}
